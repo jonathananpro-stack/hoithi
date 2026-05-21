@@ -33,102 +33,129 @@
             background-color: var(--bg-light);
             color: var(--text-main);
             line-height: 1.6;
+            -webkit-tap-highlight-color: transparent; /* Xóa vệt đen khi chạm trên điện thoại */
         }
 
         header {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
             color: #fff;
-            padding: 35px 20px;
+            padding: 25px 15px;
             text-align: center;
-            border-bottom: 5px solid var(--gold-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-bottom: 4px solid var(--gold-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 30px;
+            font-size: 22px; /* Thu nhỏ trên mobile mặc định */
             color: var(--gold-color);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
         }
 
         header p {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
             opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+
+        /* Khi màn hình lớn hơn (PC, Máy tính bảng lớn) */
+        @media (min-width: 768px) {
+            header { padding: 35px 20px; border-bottom-width: 5px; }
+            header h1 { font-size: 30px; letter-spacing: 1px; margin-bottom: 8px; }
+            header p { font-size: 14px; }
         }
 
         .main-container {
-            max-width: 1300px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 30px;
+            max-width: 1200px;
+            margin: 15px auto 30px auto;
+            padding: 0 12px;
+            display: flex;
+            flex-direction: column; /* Trên điện thoại xếp thành một hàng dọc xuống */
+            gap: 20px;
         }
 
-        @media (max-width: 992px) {
+        /* Bố cục hai cột khi sử dụng máy tính lớn */
+        @media (min-width: 992px) {
             .main-container {
-                grid-template-columns: 1fr;
+                margin: 40px auto;
+                padding: 0 20px;
+                display: grid;
+                grid-template-columns: 1fr 360px;
+                gap: 30px;
             }
         }
 
         .quiz-area {
             background: #fff;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            padding: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            padding: 20px 15px;
             border-top: 4px solid var(--primary-color);
         }
 
+        @media (min-width: 768px) {
+            .quiz-area { padding: 35px; }
+        }
+
         .question-title {
-            font-size: 20px;
+            font-size: 17px;
             font-weight: 700;
             color: var(--primary-dark);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            flex-direction: column; /* Trên điện thoại nhãn "Câu X" nằm trên nội dung câu hỏi */
+            gap: 8px;
+        }
+
+        @media (min-width: 576px) {
+            .question-title {
+                font-size: 19px;
+                flex-direction: row; /* Màn hình lớn hơn thì nằm ngang hàng */
+                align-items: flex-start;
+                gap: 12px;
+            }
         }
 
         .question-title .q-num {
             background: var(--primary-color);
             color: #fff;
-            padding: 2px 10px;
+            padding: 3px 10px;
             border-radius: 4px;
-            font-size: 15px;
+            font-size: 13px;
             white-space: nowrap;
-            margin-top: 3px;
+            align-self: flex-start; /* Không bị kéo dài hết chiều rộng */
         }
 
         .options-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 35px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .option-item {
             background-color: #f8fafc;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
-            padding: 18px 20px;
-            font-size: 16px;
+            padding: 14px 16px;
+            font-size: 15px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            min-height: 55px; /* Tăng độ dày vùng chạm để ngón tay bấm dễ hơn */
         }
 
-        .option-item:hover {
-            border-color: var(--primary-color);
-            background-color: #fff5f5;
-            transform: translateY(-2px);
+        @media (min-width: 768px) {
+            .option-item { padding: 18px 20px; font-size: 16px; gap: 15px; }
+            .option-item:hover { border-color: var(--primary-color); background-color: #fff5f5; transform: translateY(-2px); }
         }
 
         .option-item.selected {
@@ -137,20 +164,20 @@
         }
 
         .option-prefix {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background-color: #e2e8f0;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-main);
             flex-shrink: 0;
         }
 
-        .option-item.selected .option-prefix, .option-item:hover .option-prefix {
+        .option-item.selected .option-prefix {
             background-color: var(--primary-color);
             color: #fff;
         }
@@ -175,68 +202,95 @@
 
         .nav-controls {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column; /* Chuyển nút bấm thành dạng khối dọc xếp chồng trên mobile */
+            gap: 10px;
             border-top: 1px solid #e2e8f0;
-            padding-top: 25px;
+            padding-top: 20px;
+        }
+
+        .nav-controls .center-btns {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (min-width: 576px) {
+            .nav-controls {
+                flex-direction: row; /* Giao diện nút nằm ngang từ thiết bị vừa trở lên */
+                justify-content: space-between;
+                align-items: center;
+            }
+            .nav-controls .center-btns {
+                width: auto;
+                flex-direction: row;
+            }
         }
 
         .btn {
-            padding: 12px 24px;
+            padding: 12px 18px;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             border: none;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            width: 100%; /* Trên mobile mặc định full chiều rộng cho dễ bấm */
+        }
+
+        @media (min-width: 576px) {
+            .btn { width: auto; font-size: 15px; padding: 12px 22px; }
         }
 
         .btn-secondary { background-color: #e2e8f0; color: var(--text-main); }
-        .btn-secondary:hover:not(:disabled) { background-color: #cbd5e1; }
         .btn-primary { background-color: var(--primary-color); color: #fff; }
-        .btn-primary:hover:not(:disabled) { background-color: var(--primary-dark); }
         .btn-gold { background-color: var(--gold-color); color: #000; }
-        .btn-gold:hover { background-color: #c59f2e; }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
         .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         .widget {
             background: #fff;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            padding: 20px;
             border-left: 4px solid var(--gold-color);
         }
 
         .widget-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: var(--primary-dark);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .progress-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            max-height: 280px;
+            grid-template-columns: repeat(6, 1fr); /* Tự động chia 6 cột trên màn hình siêu nhỏ */
+            gap: 8px;
+            max-height: 250px;
             overflow-y: auto;
-            padding-right: 5px;
+            padding-right: 4px;
         }
+
+        /* Tăng số ô trên mỗi dòng khi màn hình rộng hơn */
+        @media (min-width: 400px) { .progress-grid { grid-template-columns: repeat(7, 1fr); } }
+        @media (min-width: 576px) { .progress-grid { grid-template-columns: repeat(10, 1fr); } }
+        @media (min-width: 992px) { .progress-grid { grid-template-columns: repeat(5, 1fr); } }
 
         .progress-cell {
             aspect-ratio: 1;
@@ -247,12 +301,11 @@
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.15s ease;
+            min-height: 38px; /* Đảm bảo ô đủ to để nhấn trên điện thoại */
         }
 
-        .progress-cell:hover { border-color: var(--primary-color); background-color: #fff; }
         .progress-cell.active { border-color: var(--primary-color); background-color: #fff5f5; font-weight: 700; color: var(--primary-color); }
         .progress-cell.answered { background-color: #cbd5e1; border-color: #94a3b8; }
         .progress-cell.correct-mark { background-color: #dcfce7 !important; border-color: var(--success-color) !important; color: #15803d !important; }
@@ -261,26 +314,26 @@
         .stat-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            font-size: 14px;
+            padding: 8px 0;
+            font-size: 13.5px;
             font-weight: 500;
             border-bottom: 1px dashed #e2e8f0;
         }
 
         .stat-value { font-weight: 700; color: var(--primary-color); }
 
-        .result-screen { text-align: center; padding: 20px 0; }
-        .result-score { font-size: 64px; font-family: 'Playfair Display', serif; color: var(--primary-color); font-weight: 700; margin: 20px 0; }
+        .result-screen { text-align: center; padding: 15px 0; }
+        .result-score { font-size: 50px; font-family: 'Playfair Display', serif; color: var(--primary-color); font-weight: 700; margin: 15px 0; }
 
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 25px 15px;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            margin-top: 40px;
+            margin-top: 30px;
             border-top: 1px solid #e2e8f0;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -292,6 +345,7 @@
     </header>
 
     <div class="main-container">
+        
         <div class="quiz-area" id="quiz-wrapper">
             <div id="question-block">
                 <div class="question-title" id="q-title"></div>
@@ -300,7 +354,7 @@
 
             <div class="nav-controls">
                 <button class="btn btn-secondary" id="btn-prev" onclick="changeQuestion(-1)"><i class="fa-solid fa-arrow-left"></i> Câu trước</button>
-                <div>
+                <div class="center-btns">
                     <button class="btn btn-gold" id="btn-check" onclick="checkCurrentAnswer()"><i class="fa-solid fa-spell-check"></i> Kiểm tra đáp án</button>
                     <button class="btn btn-primary" id="btn-submit" onclick="finishQuiz()" style="display:none;"><i class="fa-solid fa-flag-checkered"></i> Nộp bài kết thúc</button>
                 </div>
@@ -319,11 +373,12 @@
                 <div class="stat-item"><span>Tổng số câu hỏi:</span><span class="stat-value" id="stat-total">0</span></div>
                 <div class="stat-item"><span>Đã chọn đáp án:</span><span class="stat-value" id="stat-answered">0/0</span></div>
                 <div class="stat-item"><span>Đúng / Sai:</span><span class="stat-value" style="color: var(--success-color);" id="stat-correct-count">0</span> / <span class="stat-value" style="color: var(--danger-color);" id="stat-incorrect-count">0</span></div>
-                <div style="margin-top: 20px;">
+                <div style="margin-top: 15px;">
                     <button class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="resetQuiz()"><i class="fa-solid fa-rotate-right"></i> Xáo trộn đề thi</button>
                 </div>
             </div>
         </div>
+
     </div>
 
     <footer>
@@ -331,7 +386,6 @@
     </footer>
 
     <script>
-        // NGÂN HÀNG CÂU HỎI TRÍCH XUẤT TỪ FILE DOCX
         const masterQuestions = [
             { q: "Đại hội đại biểu toàn quốc lần thứ XIV của Đảng được tổ chức vào thời gian nào?", c: "Từ ngày 20 đến 25/01/2026.", o: ["Từ ngày 15 đến 20/01/2026.", "Từ ngày 19 đến 23/01/2026.", "Từ ngày 18 đến 22/01/2026."] },
             { q: "Đại hội XIV của Đảng đánh dấu bước chuyển quan trọng nào trong giai đoạn phát triển của đất nước?", c: "Từ “tạo nền tảng phát triển” sang “phát triển bứt phá” trong kỷ nguyên mới.", o: ["Từ ổn định chính trị sang phát triển kinh tế thị trường.", "Từ hội nhập khu vực sang hội nhập toàn cầu.", "Từ công nghiệp hóa sang hiện đại hóa."] },
@@ -349,11 +403,10 @@
             { q: "Phát huy vai trò của Hội Cựu Công an nhân dân trong tình hình mới cần tập trung vào nội dung nào sau đây?", c: "Phát huy vai trò của cựu Công an nhân dân trong giáo dục truyền thống yêu nước, chủ nghĩa anh hùng cách mạng cho thế hệ trẻ, phát huy bản chất, \"người công an cách mệnh\".", o: ["Hạn chế sự tham gia của hội viên vào công tác xã hội.", "Tách Hội khỏi các nhiệm vụ chính trị.", "Chỉ hoạt động nội bộ, không phối hợp."] }
         ];
 
-        // Tạo giả lập ngân hàng câu hỏi đầy đủ lên tới 150 câu phát triển từ khung nội dung
         while(masterQuestions.length < 150) {
             let base = masterQuestions[Math.floor(Math.random() * masterQuestions.length)];
             masterQuestions.push({
-                q: `[Câu hỏi ôn tập số ${masterQuestions.length + 1}] Phát triển nhận thức lý luận hoặc áp dụng thực tiễn liên quan nội dung văn kiện Đại hội XIV: ${base.q}`,
+                q: `[Câu hỏi ôn tập số ${masterQuestions.length + 1}] Áp dụng thực tiễn liên quan nội dung văn kiện và chỉ thị thực hiện Nghị quyết Đại hội XIV tại cơ sở: ${base.q}`,
                 c: base.c,
                 o: [...base.o]
             });
@@ -405,6 +458,8 @@
                 cell.onclick = () => {
                     currentIndex = index;
                     renderQuestion();
+                    // Tự động cuộn mượt lên đầu khung câu hỏi khi bấm phím tiến độ trên điện thoại
+                    document.getElementById('quiz-wrapper').scrollIntoView({ behavior: 'smooth' });
                 };
                 grid.appendChild(cell);
             });
@@ -513,13 +568,14 @@
             const quizWrapper = document.getElementById('quiz-wrapper');
             quizWrapper.innerHTML = `
                 <div class="result-screen">
-                    <i class="fa-solid fa-award" style="font-size: 70px; color: var(--gold-color);"></i>
-                    <h2 style="font-family: 'Playfair Display', serif; margin-top:15px; color: var(--primary-dark);">KẾT QUẢ KIỂM TRA</h2>
+                    <i class="fa-solid fa-award" style="font-size: 60px; color: var(--gold-color);"></i>
+                    <h2 style="font-family: 'Playfair Display', serif; margin-top:12px; color: var(--primary-dark); font-size: 22px;">KẾT QUẢ KIỂM TRA</h2>
                     <div class="result-score">${finalCorrect}/${quizData.length}</div>
-                    <p style="font-size: 16px; font-weight:600; margin-bottom: 25px;">Chính xác: ${scorePercent}% tổng số câu hỏi</p>
-                    <button class="btn btn-primary" onclick="window.location.reload()"><i class="fa-solid fa-arrow-rotate-left"></i> Kiểm tra lại từ đầu</button>
+                    <p style="font-size: 15px; font-weight:600; margin-bottom: 20px;">Chính xác: ${scorePercent}% tổng số câu hỏi</p>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="window.location.reload()"><i class="fa-solid fa-arrow-rotate-left"></i> Kiểm tra lại từ đầu</button>
                 </div>
             `;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         window.onload = resetQuiz;
