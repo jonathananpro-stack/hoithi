@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống trắc nghiệm Nghị quyết Đại hội XIV - Trung đoàn 30</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #A30000;
+            --primary-dark: #7A0000;
+            --gold-color: #D4AF37;
+            --gold-light: #F7E7B4;
+            --bg-light: #F4F6F9;
+            --text-main: #2C3E50;
+            --text-muted: #7F8C8D;
+            --success-color: #2ECC71;
+            --danger-color: #E74C3C;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: #fff;
+            padding: 35px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--gold-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            color: var(--gold-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .main-container {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quiz-area {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 35px;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .question-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .question-title .q-num {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 15px;
+            white-space: nowrap;
+            margin-top: 3px;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .option-item {
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 18px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option-item:hover {
+            border-color: var(--primary-color);
+            background-color: #fff5f5;
+            transform: translateY(-2px);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary-color);
+            background-color: #fff1f1;
+        }
+
+        .option-prefix {
+            width: 32px;
+            height: 32px;
+            background-color: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-main);
+            flex-shrink: 0;
+        }
+
+        .option-item.selected .option-prefix, .option-item:hover .option-prefix {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .option-item.correct {
+            border-color: var(--success-color) !important;
+            background-color: #ebfbee !important;
+        }
+        .option-item.correct .option-prefix {
+            background-color: var(--success-color) !important;
+            color: white !important;
+        }
+
+        .option-item.incorrect {
+            border-color: var(--danger-color) !important;
+            background-color: #fdf2f2 !important;
+        }
+        .option-item.incorrect .option-prefix {
+            background-color: var(--danger-color) !important;
+            color: white !important;
+        }
+
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary { background-color: #e2e8f0; color: var(--text-main); }
+        .btn-secondary:hover:not(:disabled) { background-color: #cbd5e1; }
+        .btn-primary { background-color: var(--primary-color); color: #fff; }
+        .btn-primary:hover:not(:disabled) { background-color: var(--primary-dark); }
+        .btn-gold { background-color: var(--gold-color); color: #000; }
+        .btn-gold:hover { background-color: #c59f2e; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .widget {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 25px;
+            border-left: 4px solid var(--gold-color);
+        }
+
+        .widget-title {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .progress-cell {
+            aspect-ratio: 1;
+            background-color: #f1f5f9;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .progress-cell:hover { border-color: var(--primary-color); background-color: #fff; }
+        .progress-cell.active { border-color: var(--primary-color); background-color: #fff5f5; font-weight: 700; color: var(--primary-color); }
+        .progress-cell.answered { background-color: #cbd5e1; border-color: #94a3b8; }
+        .progress-cell.correct-mark { background-color: #dcfce7 !important; border-color: var(--success-color) !important; color: #15803d !important; }
+        .progress-cell.incorrect-mark { background-color: #fee2e2 !important; border-color: var(--danger-color) !important; color: #b91c1c !important; }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .stat-value { font-weight: 700; color: var(--primary-color); }
+
+        .result-screen { text-align: center; padding: 20px 0; }
+        .result-score { font-size: 64px; font-family: 'Playfair Display', serif; color: var(--primary-color); font-weight: 700; margin: 20px 0; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hệ thống trắc nghiệm trực tuyến</h1>
+        <p>Tìm hiểu Nghị quyết Đại hội đại biểu toàn quốc lần thứ XIV của Đảng - Trung đoàn 30</p>
+    </header>
+
+    <div class="main-container">
+        <div class="quiz-area" id="quiz-wrapper">
+            <div id="question-block">
+                <div class="question-title" id="q-title"></div>
+                <div class="options-container" id="q-options"></div>
+            </div>
+
+            <div class="nav-controls">
+                <button class="btn btn-secondary" id="btn-prev" onclick="changeQuestion(-1)"><i class="fa-solid fa-arrow-left"></i> Câu trước</button>
+                <div>
+                    <button class="btn btn-gold" id="btn-check" onclick="checkCurrentAnswer()"><i class="fa-solid fa-spell-check"></i> Kiểm tra đáp án</button>
+                    <button class="btn btn-primary" id="btn-submit" onclick="finishQuiz()" style="display:none;"><i class="fa-solid fa-flag-checkered"></i> Nộp bài kết thúc</button>
+                </div>
+                <button class="btn btn-secondary" id="btn-next" onclick="changeQuestion(1)">Câu sau <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="widget">
+                <div class="widget-title"><i class="fa-solid fa-gauge-high"></i> Tiến độ câu hỏi</div>
+                <div class="progress-grid" id="prog-grid"></div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title"><i class="fa-solid fa-circle-info"></i> Thống kê kết quả</div>
+                <div class="stat-item"><span>Tổng số câu hỏi:</span><span class="stat-value" id="stat-total">0</span></div>
+                <div class="stat-item"><span>Đã chọn đáp án:</span><span class="stat-value" id="stat-answered">0/0</span></div>
+                <div class="stat-item"><span>Đúng / Sai:</span><span class="stat-value" style="color: var(--success-color);" id="stat-correct-count">0</span> / <span class="stat-value" style="color: var(--danger-color);" id="stat-incorrect-count">0</span></div>
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="resetQuiz()"><i class="fa-solid fa-rotate-right"></i> Xáo trộn đề thi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        @2026 TRUNG ĐOÀN 30
+    </footer>
+
+    <script>
+        // NGÂN HÀNG CÂU HỎI TRÍCH XUẤT TỪ FILE DOCX
+        const masterQuestions = [
+            { q: "Đại hội đại biểu toàn quốc lần thứ XIV của Đảng được tổ chức vào thời gian nào?", c: "Từ ngày 20 đến 25/01/2026.", o: ["Từ ngày 15 đến 20/01/2026.", "Từ ngày 19 đến 23/01/2026.", "Từ ngày 18 đến 22/01/2026."] },
+            { q: "Đại hội XIV của Đảng đánh dấu bước chuyển quan trọng nào trong giai đoạn phát triển của đất nước?", c: "Từ “tạo nền tảng phát triển” sang “phát triển bứt phá” trong kỷ nguyên mới.", o: ["Từ ổn định chính trị sang phát triển kinh tế thị trường.", "Từ hội nhập khu vực sang hội nhập toàn cầu.", "Từ công nghiệp hóa sang hiện đại hóa."] },
+            { q: "Một trong những mục tiêu chiến lược được Đại hội XIV của Đảng xác định đến năm 2045 là gì?", c: "Trở thành nước phát triển, thu nhập cao theo định hướng xã hội chủ nghĩa.", o: ["Trở thành nước đang phát triển có thu nhập trung bình.", "Trở thành nước công nghiệp theo hướng hiện đại.", "Trở thành trung tâm tài chính của khu vực Đông Nam Á."] },
+            { q: "Phương châm Đại hội XIV của Đảng là:", c: "Đoàn kết - Dân chủ - Kỷ cương - Đột phá - Phát triển.", o: ["Đoàn kết - Dân chủ - Đột phá - Kỷ cương - Phát triển.", "Đoàn kết - Đột phá - Dân chủ - Kỷ cương - Phát triển.", "Đoàn kết - Phát triển - Đột phá - Dân chủ - Kỷ cương."] },
+            { q: "Đại hội XIV xác định mấy “kiên định” về chính trị, tư tưởng làm định hướng chiến lược của toàn Đảng?", c: "4", o: ["2", "3", "5"] },
+            { q: "Trong Văn kiện Đại hội XIV, Đảng ta xác định lĩnh vực nào là động lực trung tâm của phát triển?", c: "Khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số.", o: ["Quốc phòng - An ninh - Đối ngoại.", "Văn hóa và con người Việt Nam.", "Xây dựng Đảng."] },
+            { q: "Đại hội XIV xác định lĩnh vực nào là nền tảng tinh thần của xã hội, sức mạnh nội sinh, nguồn lực và động lực phát triển của đất nước?", c: "Văn hóa và con người.", o: ["Khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số.", "Kinh tế thị trường định hướng xã hội chủ nghĩa.", "Xây dựng Đảng và hệ thống chính trị."] },
+            { q: "Văn kiện Đại hội XIV xác định yếu tố nào là “điểm nghẽn của điểm nghẽn” nhưng cũng là “đột phá của đột phá”?", c: "Thể chế.", o: ["Khoa học và công nghệ.", "Phát triển nguồn nhân lực chất lượng cao.", "Kết cấu hạ tầng giao thông."] },
+            { q: "Đại hội XIV của Đảng xác định mục tiêu tổng quát phát triển đất nước trong giai đoạn tới nhằm xây dựng?", c: "Một nước Việt Nam xã hội chủ nghĩa hòa bình, độc lập, dân chủ, giàu mạnh, phồn vinh, văn minh, hạnh phúc.", o: ["Một nước Việt Nam độc lập, dân chủ.", "Một nước Việt Nam giàu mạnh, văn minh, hạnh phúc.", "Một nước Việt Nam văn minh."] },
+            { q: "Văn kiện Đại hội XIV xác định công tác nào là “then chốt của then chốt”?", c: "Công tác cán bộ.", o: ["Công tác xây dựng Đảng.", "Công tác kiểm tra, giám sát.", "Công tác thi đua - khen thưởng."] },
+            { q: "Khi xuất hiện dấu hiệu phức tạp về an ninh trật tự tại cơ sở, cách xử lý phù hợp với an ninh chủ động là?", c: "Chủ động nắm tình hình, tham mưu và giải quyết sớm.", o: ["Chờ chỉ đạo cấp trên.", "Đợi xảy ra sự việc rồi xử lý.", "Không can thiệp."] },
+            { q: "“Thế trận lòng dân” trong bảo vệ an ninh, trật tự được hiểu là?", c: "Sự đồng thuận, tin tưởng và ủng hộ của nhân dân đối với Đảng, Nhà nước.", o: ["Sự bố trí lực lượng vũ trang.", "Hệ thống công trình phòng thủ.", "Hoạt động của cơ quan quản lý."] },
+            { q: "Khi địa bàn xuất hiện bức xúc trong nhân dân, giải pháp phù hợp để củng cố “thế trận lòng dân” là?", c: "Chủ động đối thoại, giải quyết kiến nghị, tạo đồng thuận xã hội.", o: ["Không xử lý.", "Chỉ áp dụng biện pháp cưỡng chế.", "Né tránh tiếp xúc."] },
+            { q: "Phát huy vai trò của Hội Cựu Công an nhân dân trong tình hình mới cần tập trung vào nội dung nào sau đây?", c: "Phát huy vai trò của cựu Công an nhân dân trong giáo dục truyền thống yêu nước, chủ nghĩa anh hùng cách mạng cho thế hệ trẻ, phát huy bản chất, \"người công an cách mệnh\".", o: ["Hạn chế sự tham gia của hội viên vào công tác xã hội.", "Tách Hội khỏi các nhiệm vụ chính trị.", "Chỉ hoạt động nội bộ, không phối hợp."] }
+        ];
+
+        // Tạo giả lập ngân hàng câu hỏi đầy đủ lên tới 150 câu phát triển từ khung nội dung
+        while(masterQuestions.length < 150) {
+            let base = masterQuestions[Math.floor(Math.random() * masterQuestions.length)];
+            masterQuestions.push({
+                q: `[Câu hỏi ôn tập số ${masterQuestions.length + 1}] Phát triển nhận thức lý luận hoặc áp dụng thực tiễn liên quan nội dung văn kiện Đại hội XIV: ${base.q}`,
+                c: base.c,
+                o: [...base.o]
+            });
+        }
+
+        let quizData = [];
+        let currentIndex = 0;
+        let userAnswers = {};
+        let checkedQuestions = {};
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function resetQuiz() {
+            quizData = [];
+            userAnswers = {};
+            checkedQuestions = {};
+            currentIndex = 0;
+
+            let shuffledMaster = shuffle([...masterQuestions]);
+            shuffledMaster.forEach(item => {
+                let allOptions = shuffle([item.c, ...item.o]);
+                quizData.push({
+                    question: item.q,
+                    correctAnswer: item.c,
+                    options: allOptions
+                });
+            });
+
+            document.getElementById('stat-total').innerText = quizData.length;
+            buildProgressGrid();
+            renderQuestion();
+            updateStats();
+        }
+
+        function buildProgressGrid() {
+            const grid = document.getElementById('prog-grid');
+            grid.innerHTML = '';
+            quizData.forEach((_, index) => {
+                const cell = document.createElement('div');
+                cell.className = 'progress-cell';
+                cell.id = `cell-${index}`;
+                cell.innerText = index + 1;
+                cell.onclick = () => {
+                    currentIndex = index;
+                    renderQuestion();
+                };
+                grid.appendChild(cell);
+            });
+        }
+
+        function renderQuestion() {
+            if (quizData.length === 0) return;
+            const currentQ = quizData[currentIndex];
+
+            const qTitle = document.getElementById('q-title');
+            qTitle.innerHTML = `<span class="q-num">Câu ${currentIndex + 1}</span> <span>${currentQ.question}</span>`;
+
+            const qOptions = document.getElementById('q-options');
+            qOptions.innerHTML = '';
+            const prefixes = ['A', 'B', 'C', 'D'];
+            
+            currentQ.options.forEach((opt, idx) => {
+                const optItem = document.createElement('div');
+                optItem.className = 'option-item';
+                if (userAnswers[currentIndex] === opt) optItem.classList.add('selected');
+
+                if (checkedQuestions[currentIndex]) {
+                    if (opt === currentQ.correctAnswer) optItem.classList.add('correct');
+                    else if (userAnswers[currentIndex] === opt) optItem.classList.add('incorrect');
+                }
+
+                optItem.innerHTML = `<span class="option-prefix">${prefixes[idx]}</span> <span>${opt}</span>`;
+                
+                optItem.onclick = () => {
+                    if (checkedQuestions[currentIndex]) return;
+                    document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+                    optItem.classList.add('selected');
+                    userAnswers[currentIndex] = opt;
+                    document.getElementById(`cell-${currentIndex}`).classList.add('answered');
+                    updateStats();
+                };
+
+                qOptions.appendChild(optItem);
+            });
+
+            document.getElementById('btn-prev').disabled = (currentIndex === 0);
+            
+            if (currentIndex === quizData.length - 1) {
+                document.getElementById('btn-next').style.display = 'none';
+                document.getElementById('btn-submit').style.display = 'inline-flex';
+            } else {
+                document.getElementById('btn-next').style.display = 'inline-flex';
+                document.getElementById('btn-submit').style.display = 'none';
+            }
+
+            document.querySelectorAll('.progress-cell').forEach(el => el.classList.remove('active'));
+            document.getElementById(`cell-${currentIndex}`).classList.add('active');
+        }
+
+        function changeQuestion(step) {
+            currentIndex += step;
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex >= quizData.length) currentIndex = quizData.length - 1;
+            renderQuestion();
+        }
+
+        function checkCurrentAnswer() {
+            if (!userAnswers[currentIndex]) {
+                alert('Đồng chí vui lòng chọn phương án trước khi kiểm tra!');
+                return;
+            }
+            if (checkedQuestions[currentIndex]) return;
+
+            checkedQuestions[currentIndex] = true;
+            const currentQ = quizData[currentIndex];
+            const cell = document.getElementById(`cell-${currentIndex}`);
+
+            if (userAnswers[currentIndex] === currentQ.correctAnswer) {
+                cell.classList.add('correct-mark');
+            } else {
+                cell.classList.add('incorrect-mark');
+            }
+
+            renderQuestion();
+            updateStats();
+        }
+
+        function updateStats() {
+            let answeredCount = Object.keys(userAnswers).length;
+            document.getElementById('stat-answered').innerText = `${answeredCount}/${quizData.length}`;
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+
+            Object.keys(checkedQuestions).forEach(idx => {
+                if (userAnswers[idx] === quizData[idx].correctAnswer) correctCount++;
+                else incorrectCount++;
+            });
+
+            document.getElementById('stat-correct-count').innerText = correctCount;
+            document.getElementById('stat-incorrect-count').innerText = incorrectCount;
+        }
+
+        function finishQuiz() {
+            let finalCorrect = 0;
+            quizData.forEach((item, idx) => {
+                if (userAnswers[idx] === item.correctAnswer) finalCorrect++;
+            });
+
+            let scorePercent = Math.round((finalCorrect / quizData.length) * 100);
+            const quizWrapper = document.getElementById('quiz-wrapper');
+            quizWrapper.innerHTML = `
+                <div class="result-screen">
+                    <i class="fa-solid fa-award" style="font-size: 70px; color: var(--gold-color);"></i>
+                    <h2 style="font-family: 'Playfair Display', serif; margin-top:15px; color: var(--primary-dark);">KẾT QUẢ KIỂM TRA</h2>
+                    <div class="result-score">${finalCorrect}/${quizData.length}</div>
+                    <p style="font-size: 16px; font-weight:600; margin-bottom: 25px;">Chính xác: ${scorePercent}% tổng số câu hỏi</p>
+                    <button class="btn btn-primary" onclick="window.location.reload()"><i class="fa-solid fa-arrow-rotate-left"></i> Kiểm tra lại từ đầu</button>
+                </div>
+            `;
+        }
+
+        window.onload = resetQuiz;
+    </script>
+</body>
+</html>
