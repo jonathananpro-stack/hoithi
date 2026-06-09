@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống trắc nghiệm Nghị quyết Đại hội XIV - Trung đoàn 30</title>
+    <title>Hệ thống trắc nghiệm Nghị quyết Đại hội XIV - Trung đoàn 11</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
             background-color: var(--bg-light);
             color: var(--text-main);
             line-height: 1.6;
-            -webkit-tap-highlight-color: transparent; /* Xóa vệt đen khi chạm trên điện thoại */
+            -webkit-tap-highlight-color: transparent;
         }
 
         header {
@@ -47,7 +47,7 @@
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 22px; /* Thu nhỏ trên mobile mặc định */
+            font-size: 22px;
             color: var(--gold-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -63,7 +63,6 @@
             line-height: 1.4;
         }
 
-        /* Khi màn hình lớn hơn (PC, Máy tính bảng lớn) */
         @media (min-width: 768px) {
             header { padding: 35px 20px; border-bottom-width: 5px; }
             header h1 { font-size: 30px; letter-spacing: 1px; margin-bottom: 8px; }
@@ -75,11 +74,10 @@
             margin: 15px auto 30px auto;
             padding: 0 12px;
             display: flex;
-            flex-direction: column; /* Trên điện thoại xếp thành một hàng dọc xuống */
+            flex-direction: column;
             gap: 20px;
         }
 
-        /* Bố cục hai cột khi sử dụng máy tính lớn */
         @media (min-width: 992px) {
             .main-container {
                 margin: 40px auto;
@@ -108,14 +106,14 @@
             color: var(--primary-dark);
             margin-bottom: 20px;
             display: flex;
-            flex-direction: column; /* Trên điện thoại nhãn "Câu X" nằm trên nội dung câu hỏi */
+            flex-direction: column;
             gap: 8px;
         }
 
         @media (min-width: 576px) {
             .question-title {
                 font-size: 19px;
-                flex-direction: row; /* Màn hình lớn hơn thì nằm ngang hàng */
+                flex-direction: row;
                 align-items: flex-start;
                 gap: 12px;
             }
@@ -128,7 +126,7 @@
             border-radius: 4px;
             font-size: 13px;
             white-space: nowrap;
-            align-self: flex-start; /* Không bị kéo dài hết chiều rộng */
+            align-self: flex-start;
         }
 
         .options-container {
@@ -150,7 +148,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            min-height: 55px; /* Tăng độ dày vùng chạm để ngón tay bấm dễ hơn */
+            min-height: 55px;
         }
 
         @media (min-width: 768px) {
@@ -202,7 +200,7 @@
 
         .nav-controls {
             display: flex;
-            flex-direction: column; /* Chuyển nút bấm thành dạng khối dọc xếp chồng trên mobile */
+            flex-direction: column;
             gap: 10px;
             border-top: 1px solid #e2e8f0;
             padding-top: 20px;
@@ -217,7 +215,7 @@
 
         @media (min-width: 576px) {
             .nav-controls {
-                flex-direction: row; /* Giao diện nút nằm ngang từ thiết bị vừa trở lên */
+                flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
             }
@@ -239,7 +237,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            width: 100%; /* Trên mobile mặc định full chiều rộng cho dễ bấm */
+            width: 100%;
         }
 
         @media (min-width: 576px) {
@@ -280,15 +278,15 @@
 
         .progress-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr); /* Tự động chia 6 cột trên màn hình siêu nhỏ */
+            grid-template-columns: repeat(5, 1fr);
             gap: 8px;
             max-height: 250px;
             overflow-y: auto;
             padding-right: 4px;
         }
 
-        /* Tăng số ô trên mỗi dòng khi màn hình rộng hơn */
-        @media (min-width: 400px) { .progress-grid { grid-template-columns: repeat(7, 1fr); } }
+        @media (min-width: 350px) { .progress-grid { grid-template-columns: repeat(6, 1fr); } }
+        @media (min-width: 450px) { .progress-grid { grid-template-columns: repeat(8, 1fr); } }
         @media (min-width: 576px) { .progress-grid { grid-template-columns: repeat(10, 1fr); } }
         @media (min-width: 992px) { .progress-grid { grid-template-columns: repeat(5, 1fr); } }
 
@@ -301,9 +299,9 @@
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 12px;
+            font-size: 13px;
             cursor: pointer;
-            min-height: 38px; /* Đảm bảo ô đủ to để nhấn trên điện thoại */
+            min-height: 40px;
         }
 
         .progress-cell.active { border-color: var(--primary-color); background-color: #fff5f5; font-weight: 700; color: var(--primary-color); }
@@ -341,7 +339,7 @@
 
     <header>
         <h1>Hệ thống trắc nghiệm trực tuyến</h1>
-        <p>Tìm hiểu Nghị quyết Đại hội đại biểu toàn quốc lần thứ XIV của Đảng - Trung đoàn 30</p>
+        <p>Tìm hiểu Nghị quyết Đại hội đại biểu toàn quốc lần thứ XIV của Đảng - Trung đoàn 11</p>
     </header>
 
     <div class="main-container">
@@ -382,35 +380,62 @@
     </div>
 
     <footer>
-        @2026 TRUNG ĐOÀN 30
+        &copy; 2026 TRUNG ĐOÀN 11
     </footer>
 
     <script>
         const masterQuestions = [
-            { q: "Đại hội đại biểu toàn quốc lần thứ XIV của Đảng được tổ chức vào thời gian nào?", c: "Từ ngày 20 đến 25/01/2026.", o: ["Từ ngày 15 đến 20/01/2026.", "Từ ngày 19 đến 23/01/2026.", "Từ ngày 18 đến 22/01/2026."] },
-            { q: "Đại hội XIV của Đảng đánh dấu bước chuyển quan trọng nào trong giai đoạn phát triển của đất nước?", c: "Từ “tạo nền tảng phát triển” sang “phát triển bứt phá” trong kỷ nguyên mới.", o: ["Từ ổn định chính trị sang phát triển kinh tế thị trường.", "Từ hội nhập khu vực sang hội nhập toàn cầu.", "Từ công nghiệp hóa sang hiện đại hóa."] },
-            { q: "Một trong những mục tiêu chiến lược được Đại hội XIV của Đảng xác định đến năm 2045 là gì?", c: "Trở thành nước phát triển, thu nhập cao theo định hướng xã hội chủ nghĩa.", o: ["Trở thành nước đang phát triển có thu nhập trung bình.", "Trở thành nước công nghiệp theo hướng hiện đại.", "Trở thành trung tâm tài chính của khu vực Đông Nam Á."] },
-            { q: "Phương châm Đại hội XIV của Đảng là:", c: "Đoàn kết - Dân chủ - Kỷ cương - Đột phá - Phát triển.", o: ["Đoàn kết - Dân chủ - Đột phá - Kỷ cương - Phát triển.", "Đoàn kết - Đột phá - Dân chủ - Kỷ cương - Phát triển.", "Đoàn kết - Phát triển - Đột phá - Dân chủ - Kỷ cương."] },
-            { q: "Đại hội XIV xác định mấy “kiên định” về chính trị, tư tưởng làm định hướng chiến lược của toàn Đảng?", c: "4", o: ["2", "3", "5"] },
-            { q: "Trong Văn kiện Đại hội XIV, Đảng ta xác định lĩnh vực nào là động lực trung tâm của phát triển?", c: "Khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số.", o: ["Quốc phòng - An ninh - Đối ngoại.", "Văn hóa và con người Việt Nam.", "Xây dựng Đảng."] },
-            { q: "Đại hội XIV xác định lĩnh vực nào là nền tảng tinh thần của xã hội, sức mạnh nội sinh, nguồn lực và động lực phát triển của đất nước?", c: "Văn hóa và con người.", o: ["Khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số.", "Kinh tế thị trường định hướng xã hội chủ nghĩa.", "Xây dựng Đảng và hệ thống chính trị."] },
-            { q: "Văn kiện Đại hội XIV xác định yếu tố nào là “điểm nghẽn của điểm nghẽn” nhưng cũng là “đột phá của đột phá”?", c: "Thể chế.", o: ["Khoa học và công nghệ.", "Phát triển nguồn nhân lực chất lượng cao.", "Kết cấu hạ tầng giao thông."] },
-            { q: "Đại hội XIV của Đảng xác định mục tiêu tổng quát phát triển đất nước trong giai đoạn tới nhằm xây dựng?", c: "Một nước Việt Nam xã hội chủ nghĩa hòa bình, độc lập, dân chủ, giàu mạnh, phồn vinh, văn minh, hạnh phúc.", o: ["Một nước Việt Nam độc lập, dân chủ.", "Một nước Việt Nam giàu mạnh, văn minh, hạnh phúc.", "Một nước Việt Nam văn minh."] },
-            { q: "Văn kiện Đại hội XIV xác định công tác nào là “then chốt của then chốt”?", c: "Công tác cán bộ.", o: ["Công tác xây dựng Đảng.", "Công tác kiểm tra, giám sát.", "Công tác thi đua - khen thưởng."] },
-            { q: "Khi xuất hiện dấu hiệu phức tạp về an ninh trật tự tại cơ sở, cách xử lý phù hợp với an ninh chủ động là?", c: "Chủ động nắm tình hình, tham mưu và giải quyết sớm.", o: ["Chờ chỉ đạo cấp trên.", "Đợi xảy ra sự việc rồi xử lý.", "Không can thiệp."] },
-            { q: "“Thế trận lòng dân” trong bảo vệ an ninh, trật tự được hiểu là?", c: "Sự đồng thuận, tin tưởng và ủng hộ của nhân dân đối với Đảng, Nhà nước.", o: ["Sự bố trí lực lượng vũ trang.", "Hệ thống công trình phòng thủ.", "Hoạt động của cơ quan quản lý."] },
-            { q: "Khi địa bàn xuất hiện bức xúc trong nhân dân, giải pháp phù hợp để củng cố “thế trận lòng dân” là?", c: "Chủ động đối thoại, giải quyết kiến nghị, tạo đồng thuận xã hội.", o: ["Không xử lý.", "Chỉ áp dụng biện pháp cưỡng chế.", "Né tránh tiếp xúc."] },
-            { q: "Phát huy vai trò của Hội Cựu Công an nhân dân trong tình hình mới cần tập trung vào nội dung nào sau đây?", c: "Phát huy vai trò của cựu Công an nhân dân trong giáo dục truyền thống yêu nước, chủ nghĩa anh hùng cách mạng cho thế hệ trẻ, phát huy bản chất, \"người công an cách mệnh\".", o: ["Hạn chế sự tham gia của hội viên vào công tác xã hội.", "Tách Hội khỏi các nhiệm vụ chính trị.", "Chỉ hoạt động nội bộ, không phối hợp."] }
+            {
+                q: "Nhận thức, tư duy mới về An ninh quốc gia được thể hiện xuyên suốt trong văn kiện đại hội XIV của Đảng?",
+                c: "Tự chủ chiến lược về an ninh",
+                o: ["An ninh toàn diện", "Chủ động từ sớm, từ xa", "Tự chủ chiến lược"]
+            },
+            {
+                q: "Để thực hiện tự chủ chiến lược về an ninh, Đảng ta yêu cầu mấy trụ cột?",
+                c: "05 trụ cột",
+                o: ["03 trụ cột", "04 trụ cột", "06 trụ cột"]
+            },
+            {
+                q: "“Sợi chỉ đỏ” xuyên suốt tư duy an ninh quốc gia trong kỷ nguyên mới là gì?",
+                c: "Lấy phát triển để ổn định, ổn định để phát triển nhanh, bền vững",
+                o: ["Lấy phát triển ổn định để phát triển nhanh, bền vững", "Lấy phát triển để phát triển bền vững", "Lấy ổn định để phát triển nhanh, bền vững"]
+            },
+            {
+                q: "Đại hội đại biểu toàn quốc lần thứ XIV của Đảng đã xác định bao nhiêu mục tiêu chiến lược gắn với các mốc kỷ niệm 100 năm của đất nước?",
+                c: "02 mục tiêu",
+                o: ["03 mục tiêu", "04 mục tiêu", "05 mục tiêu"]
+            },
+            {
+                q: "Nghị quyết Đại hội XIV của Đảng khẳng định kết quả thực hiện Nghị quyết Đại hội XIII về quốc phòng, an ninh là?",
+                c: "Quốc phòng, an ninh không ngừng được củng cố, tăng cường",
+                o: ["Quốc phòng, an ninh được củng cố vững chắc", "Quốc phòng, an ninh được tăng cường vững mạnh", "Quốc phòng, an ninh đạt được nhiều thành tựu quan trọng"]
+            },
+            {
+                q: "Trong quan điểm chỉ đạo thứ hai của Nghị quyết Đại hội đại biểu toàn quốc lần thứ XIV của Đảng, nội dung về quốc phòng, an ninh được xác định như thế nào?",
+                c: "Tăng cường quốc phòng, an ninh và đẩy mạnh đối ngoại, hội nhập quốc tế là trọng yếu, thường xuyên",
+                o: ["Tăng cường quốc phòng, an ninh là nhiệm vụ then chốt", "Tập trung đầu tư toàn diện cho quốc phòng, an ninh", "Coi trọng xây dựng quốc phòng, an ninh và đối ngoại"]
+            },
+            {
+                q: "Một trong những quan điểm quan trọng của Nghị quyết Đại hội đại biểu toàn quốc lần thứ XIV của Đảng về nhiệm vụ quốc phòng là gì?",
+                c: "Chủ động, kiên quyết, kiên trì đấu tranh bảo vệ vững chắc độc lập, chủ quyền, thống nhất, toàn vẹn lãnh thổ quốc gia; bảo vệ Tổ quốc từ sớm, từ xa",
+                o: ["Bảo vệ vững chắc độc lập, chủ quyền đất nước", "Tăng cường bảo vệ Tổ quốc", "Bảo vệ Tổ quốc từ xa, từ sớm"]
+            },
+            {
+                q: "Nghị quyết Đại hội đại biểu toàn quốc lần thứ XIV của Đảng đề ra mục tiêu phát triển chung đến năm 2045 về quốc phòng, an ninh là gì?",
+                c: "Bảo đảm cao nhất lợi ích quốc gia - dân tộc; bảo vệ vững chắc Tổ quốc, giữ vững môi trường hòa bình, ổn định để phát triển đất nước.",
+                o: ["Xây dựng nền quốc phòng, an ninh vững mạnh", "Giữ môi trường ổn định, tăng cường tiềm lực quốc phòng, an ninh", "Tăng cường sức mạnh quốc phòng, an ninh"]
+            },
+            {
+                q: "Nghị quyết Đại hội XIV của Đảng định hướng phát triển đất nước giai đoạn 2026 - 2030 về quốc phòng, an ninh là?",
+                c: "Củng cố, tăng cường quốc phòng, an ninh; xây dựng Quân đội nhân dân, Công an nhân dân cách mạng, chính quy, tinh nhuệ, hiện đại",
+                o: ["Củng cố, phát triển quốc phòng, an ninh hiện đại, chính quy", "Phát triển quốc phòng, an ninh; xây dựng Quân đội nhân dân, Công an nhân dân cách mạng, chính quy, tinh nhuệ, hiện đại", "Xây dựng Quân đội nhân dân, Công an nhân dân cách mạng, chính quy, tinh nhuệ, tiến thẳng lên hiện đại"]
+            },
+            {
+                q: "Chương trình hành động của Ban Chấp hành Trung ương Đảng thực hiện Nghị quyết Đại hội XIV của Đảng đã xác định mấy đột phá chiến lược?",
+                c: "03 đột phá chiến lược",
+                o: ["04 đột phá chiến lược", "05 đột phá chiến lược", "06 đột phá chiến lược"]
+            }
         ];
-
-        while(masterQuestions.length < 150) {
-            let base = masterQuestions[Math.floor(Math.random() * masterQuestions.length)];
-            masterQuestions.push({
-                q: `[Câu hỏi ôn tập số ${masterQuestions.length + 1}] Áp dụng thực tiễn liên quan nội dung văn kiện và chỉ thị thực hiện Nghị quyết Đại hội XIV tại cơ sở: ${base.q}`,
-                c: base.c,
-                o: [...base.o]
-            });
-        }
 
         let quizData = [];
         let currentIndex = 0;
@@ -432,6 +457,7 @@
             currentIndex = 0;
 
             let shuffledMaster = shuffle([...masterQuestions]);
+            
             shuffledMaster.forEach(item => {
                 let allOptions = shuffle([item.c, ...item.o]);
                 quizData.push({
@@ -458,7 +484,6 @@
                 cell.onclick = () => {
                     currentIndex = index;
                     renderQuestion();
-                    // Tự động cuộn mượt lên đầu khung câu hỏi khi bấm phím tiến độ trên điện thoại
                     document.getElementById('quiz-wrapper').scrollIntoView({ behavior: 'smooth' });
                 };
                 grid.appendChild(cell);
